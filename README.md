@@ -26,20 +26,17 @@ A real-time chat app supporting 1-to-1 private messaging and group chats using S
 ---
 
 ## Project Folder Structure
-chat-app/
-│
-├── models/
-│ ├── Message.js
-│ └── User.js
-│
-├── public/
-│ ├── index.html
-│ ├── style.css
-│ ├── chat.html
-│ ├── chat.js
-│ └── chat.css
-│
-└── server.js
+chat-app
+• models
+   o Message.js
+   o User.js
+• public
+   o index.html
+   o style.css
+   o chat.html
+   o chat.js
+   o chat.css
+• server.js
 ---
 
 ## Installation & Setup
