@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Users</h2>
+      <button class="invite-btn">Invite Friends</button>
+    </div>
+    <select id="groupSelector">
+      <option value="General">General</option>
+      <option value="Developers">Developers</option>
+      <option value="Random">Random</option>
+    </select>
+    
+
+    <div class="chat-area">
+      <div id="messages" class="messages"></div>
+      <form id="chat-form">
+        <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Chat App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ChatPulse</div>
+    <div class="auth-buttons">
+      <button class="btn" onclick="showLogin()"> Login</button>
+      <button class="btn btn-outline" onclick="showRegister()">Register</button>
+    </div>
+  </header>
+
+  <section class="info-section">
+   <div class="card-container">
+    <div class="card">
+      <img src="https://th.bing.com/th/id/OIP.8BeUEUA9X9UOtdx8grtviwHaE8?w=233&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
+      <div class="card__content">
+        <p class="card__title">Private chating</p>
+        <p class="card__description">one-on-one communication between two users that is end-to-end encrypted, meaning only the sender and the receiver can read the messages</p>
+      </div>
+    </div>
+  
+    <div class="card">
+      <img src="https://th.bing.com/th/id/OIP.VBrXB-v7-MbyY-Bn4K0ojgHaEo?w=243&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
+      <div class="card__content">
+        <p class="card__title">Cloud Storage</p>
+        <p class="card__description">Users informations and chats are store in the cloud . And the user passwords and email are store securly due to JWT . </p>
+      </div>
+    </div>
+  
+    <div class="card">
+      <img src="https://th.bing.com/th/id/OIP._6jtFpkCmSSLXxmYd-kPjgHaE8?w=241&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
+      <div class="card__content">
+        <p class="card__title">User Interface</p>
+        <p class="card__description">well-designed, visually appealing, and user-friendly interface that makes interacting with a system easy and enjoyable.</p>
+      </div>
+    </div>
+  </div>
+
+<a class="tbtn" href="#">ChatMate</a>
+  </section>
+
+  <section id="login-form" class="form-section hidden">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email ID" required>
+    <input type="password" placeholder="Password" required>
+    <button class="btn confirm-btn">Confirm</button>
+  </section>
+
+<section id="register-form" class="form-section hidden">
+  <h2>Register</h2>
+  <input type="text" placeholder="Username" required>
+  <input type="email" placeholder="Email ID" required>
+  <input type="password" placeholder="Password" required>
+  <button class="btn confirm-btn">Confirm</button>
+</section>
+
+
+  <script>
+    function showLogin() {
+      document.getElementById("login-form").classList.remove("hidden");
+      document.getElementById("register-form").classList.add("hidden");
+    }
+
+    function showRegister() {
+      document.getElementById("register-form").classList.remove("hidden");
+      document.getElementById("login-form").classList.add("hidden");
+    }
+    document.querySelector('#login-form .confirm-btn').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('#login-form input');
+    const data = {
+      username: inputs[0].value,
+      email: inputs[1].value,
+      password: inputs[2].value
+    };
+
+    fetch('/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(data => {
+  alert(data.message);
+  if (data.message === 'Login successful') {
+    window.location.href = "/chat.html"; 
+  }
+})
+.catch(err => alert('Login error: ' + err));
+    });
+  document.querySelector('#register-form .confirm-btn').addEventListener('click', () => {
+  const inputs = document.querySelectorAll('#register-form input');
+  const data = {
+    username: inputs[0].value,
+    email: inputs[1].value, 
+    password: inputs[2].value
+  };
+
+  fetch('/api/register', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(data => {
+  alert(data.message);
+  if (data.message === 'Registration info saved') {
+    window.location.href = "/chat.html"; 
+  }
+})
+.catch(err => alert('Register error: ' + err));
+});
+  </script>
+</body>
+</html>
